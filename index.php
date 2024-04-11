@@ -1,5 +1,5 @@
 <?php 
-    require_once "includes/productos.php";
+    require_once "libraries/productos.php";
     // echo "<pre>";
     // print_r($_GET["sec"]); //index.php
     // echo "</pre>";

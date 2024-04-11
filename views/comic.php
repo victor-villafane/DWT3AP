@@ -1,8 +1,8 @@
 <?php
     include_once "libraries/funciones.php";
-    $serieSeleccionada = $_GET["serie"];
-    //$comics = $productos[$serieSeleccionada]; 
-    $comics = catalogo_x_personaje($serieSeleccionada);
+    $id = $_GET["id"];
+    //$comics = $productos[$id]; 
+    $comic = catalogo_x_id($id);
     //index.php?sec=comics&serie=batman
     // echo "<pre>";
     // print_r($comics[1]["portada"]);
@@ -10,9 +10,9 @@
 ?>
 
 
-<h1 class="text-center my-5"><?= modificacionTitulo($serieSeleccionada) ?></h1>
+<h1 class="text-center my-5"><?= modificacionTitulo($id) ?></h1>
     <div class="row">
-<?php foreach ($comics as $comic) { ?>
+<?php //foreach ($comics as $comic) { ?>
 
 
 <div class="col-3">
@@ -36,5 +36,5 @@
 </div>
 
 
-<?php } ?>
+<?php //} ?>
 </div>
