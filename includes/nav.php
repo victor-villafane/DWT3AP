@@ -14,6 +14,9 @@
                         <a class="nav-link <?= $_GET["sec"] == "quienes_somos" ? "active" : "" ?>" href="index.php?sec=quienes_somos"><?= $_GET["sec"] == "quienes_somos" ? "<b>¿Quienes Somos?</b>" : "¿Quienes Somos?" ?> </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="index.php?sec=todosLosComics">Catalogo</a>
+                    </li>                    
+                    <li class="nav-item">
                         <a class="nav-link" href="index.php?sec=comics&serie=iron-man">Iron Man</a>
                     </li>
                     <li class="nav-item">
