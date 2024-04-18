@@ -1,5 +1,7 @@
 <?php 
     require_once "libraries/productos.php";
+    require_once "class/Comic.php";
+
     // echo "<pre>";
     // print_r($_GET["sec"]); //index.php
     // echo "</pre>";
