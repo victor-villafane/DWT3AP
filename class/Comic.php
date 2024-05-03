@@ -3,43 +3,54 @@
 class Comic{
     //atributos
     protected $id;                      //solo pueden acceder los metodos de la propia clase y los metodos de los hijos de esa clase
-    protected $personaje;
-    protected $serie;
+    protected $personaje_principal_id;
+    protected $serie_id;
     protected $volumen;
     protected $numero;
     protected $titulo;
     protected $publicacion;
-    protected $guion;
-    protected $arte;
+    protected $guionista_id;
+    protected $artista_id;
     protected $bajada;
+    protected $origen;
+    protected $editorial;      
     protected $portada;
     protected $precio;
     //metodos
     public function catalogo_completo(){
         $catalogo = [];
-        $productosStringJson = file_get_contents("includes/productos.json");
-        $productosArray = json_decode($productosStringJson);        // -> un objeto de la clase stdClass
-
-        foreach ($productosArray as $value) {
-
-            //creo una instancia de comic -> ahora tengo un objeto comic
-            $comic = new self();   //self
-            //relleno los atributos
-            $comic->id = $value->id;
-            $comic->personaje = $value->personaje;
-            $comic->serie = $value->serie;
-            $comic->volumen = $value->volumen;
-            $comic->titulo = $value->titulo;
-            $comic->publicacion = $value->publicacion;
-            $comic->guion = $value->guion;
-            $comic->arte = $value->arte;
-            $comic->bajada = $value->bajada;
-            $comic->portada = $value->portada;
-            $comic->precio = $value->precio;
+        $conexion = ( new Conexion() )->getConexion();
+        $query = "SELECT * FROM comics";
+        $PDOStatement = $conexion->prepare($query);
+        $PDOStatement->setFetchMode(PDO::FETCH_CLASS, Comic::class);
+        $PDOStatement->execute();
+        while($comic = $PDOStatement->fetch()){
             $catalogo []= $comic;
-
         }
         return $catalogo;
+        // $productosStringJson = file_get_contents("includes/productos.json");
+        // $productosArray = json_decode($productosStringJson);        // -> un objeto de la clase stdClass
+
+        // foreach ($productosArray as $value) {
+
+        //     //creo una instancia de comic -> ahora tengo un objeto comic
+        //     $comic = new self();   //self
+        //     //relleno los atributos
+        //     $comic->id = $value->id;
+        //     $comic->personaje = $value->personaje;
+        //     $comic->serie = $value->serie;
+        //     $comic->volumen = $value->volumen;
+        //     $comic->titulo = $value->titulo;
+        //     $comic->publicacion = $value->publicacion;
+        //     $comic->guion = $value->guion;
+        //     $comic->arte = $value->arte;
+        //     $comic->bajada = $value->bajada;
+        //     $comic->portada = $value->portada;
+        //     $comic->precio = $value->precio;
+        //     $catalogo []= $comic;
+
+        // }
+        
     }
     public function catalogo_x_id($id){
         $comics = $this->catalogo_completo();
@@ -102,7 +113,7 @@ class Comic{
         return $this->id;
     }
     public function getPersonaje(){
-        return $this->personaje;
+        return $this->personaje_principal_id;
     }
     //set -> sirver para cambiar el valor del atributo
 
@@ -119,7 +130,8 @@ class Comic{
      */ 
     public function getSerie()
     {
-        return $this->serie;
+        $serie = ( new Serie() )->get_x_id($this->serie_id);
+        return $serie->getNombre();
     }
 
     /**
@@ -151,7 +163,8 @@ class Comic{
      */ 
     public function getGuion()
     {
-        return $this->guion;
+        $guionista = ( new Guionista() )->get_x_id($this->guionista_id);
+        return $guionista->getNombreCompleto();
     }
 
     /**
@@ -159,7 +172,8 @@ class Comic{
      */ 
     public function getArte()
     {
-        return $this->arte;
+        $artista = ( new Artista() )->get_x_id($this->artista_id);
+        return $artista->getNombreCompleto();
     }
 
     /**
@@ -194,6 +208,45 @@ class Comic{
     public function setId($id)
     {
         $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of origen
+     */ 
+    public function getOrigen()
+    {
+        return $this->origen;
+    }
+
+
+    /**
+     * Set the value of origen
+     */
+    public function setOrigen($origen): self
+    {
+        $this->origen = $origen;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of editorial
+     */ 
+    public function getEditorial()
+    {
+        return $this->editorial;
+    }
+
+    /**
+     * Set the value of editorial
+     *
+     * @return  self
+     */ 
+    public function setEditorial($editorial)
+    {
+        $this->editorial = $editorial;
 
         return $this;
     }
