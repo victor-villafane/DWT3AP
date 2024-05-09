@@ -2,19 +2,26 @@
 
 include_once "class/Conexion.php";
 include_once "class/Comic.php";
-$conexion = ( new Conexion() )->getConexion();
+include_once "class/Personaje.php";
+(new Personaje())->insert('asds', 'asds', 'asds', 'asds', 1991, 'asds');
+// try {
+//     $conexion = ( new Conexion() )->getConexion();
 
-$query = "SELECT * FROM comics";
+// $query = "INSERT INTO personajes VALUES (null,'asds', 'asds', 'asds', 'asds', 1991, 'asds')";
 
-$PDOStatement = $conexion->prepare($query);
-$PDOStatement->setFetchMode(PDO::FETCH_CLASS, Comic::class);
-$PDOStatement->execute();
-$comics = [];
-while($comic = $PDOStatement->fetch()){
-    $comics []= $comic;
-}
-echo "<pre>";
-print_r($comics);
-echo "</pre>";
+// $PDOStatement = $conexion->prepare($query);
+// // $PDOStatement->setFetchMode(PDO::FETCH_CLASS, Comic::class);
+// $PDOStatement->execute();
+// } catch (Exception $e) {
+//     echo $e->getMessage();
+// }
+
+// $comics = [];
+// while($comic = $PDOStatement->fetch()){
+//     $comics []= $comic;
+// }
+// echo "<pre>";
+// print_r($comics);
+// echo "</pre>";
 
 

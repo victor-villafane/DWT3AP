@@ -64,22 +64,39 @@ class Comic{
         return [];
     }
 
-    public function catalogo_x_personaje($personaje){
-        $comics = $this->catalogo_completo();
+    public function catalogo_x_personaje(int $personaje_id) :array
+    {
+        // $comics = $this->catalogo_completo();
         $personajes = [];
-    
-        foreach ($comics as $comic) {
-            if( $comic->personaje == $personaje ){
-                $personajes []= $comic;
-            }
-        }
-    
+
+        $conexion = ( new Conexion() )->getConexion();
+        $query = "SELECT * FROM comics WHERE personaje_principal_id = $personaje_id";
+        $PDOStatement = $conexion->prepare($query);
+        $PDOStatement->execute();
+        
+        $PDOStatement->setFetchMode(PDO::FETCH_CLASS, self::class);
+        $personajes = $PDOStatement->fetchAll();
+        
+        return $personajes;
+    }
+
+    public function personajes_validos(){
+        $personajes = [];
+
+        $conexion = ( new Conexion() )->getConexion();
+        $query = "SELECT personaje_principal_id FROM `comics` GROUP BY personaje_principal_id";
+        $PDOStatement = $conexion->prepare($query);
+        $PDOStatement->execute();
+        
+        $PDOStatement->setFetchMode(PDO::FETCH_ASSOC);
+        $personajes = $PDOStatement->fetchAll();
+        
         return $personajes;
     }
 
     public function modificacionSerie(){
         //cambio el - por un " "
-        $tituloConEspacio = str_replace("-", " ", $this->serie);
+        $tituloConEspacio = str_replace("-", " ", $this->serie_id);
         //explode divide por un caracter indicado
         $arrayTitulo = explode(" ", $tituloConEspacio);
         //paso ambas palabras a mayusculas

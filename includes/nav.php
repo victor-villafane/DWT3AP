@@ -1,3 +1,10 @@
+<?php 
+    $personajes_id = ( new Comic() )->personajes_validos();
+
+
+?>
+
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">La Tiendita de Comics</a>
@@ -8,23 +15,19 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?sec=home"> <?= $_GET["sec"] == "home" ? "<b>Home</b>" : "home" ?></a>
+                        <a class="nav-link" href="index.php?sec=home"> home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?= $_GET["sec"] == "quienes_somos" ? "active" : "" ?>" href="index.php?sec=quienes_somos"><?= $_GET["sec"] == "quienes_somos" ? "<b>¿Quienes Somos?</b>" : "¿Quienes Somos?" ?> </a>
+                        <a class="nav-link" href="index.php?sec=quienes_somos">Quienes Somos? </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="index.php?sec=todosLosComics">Catalogo</a>
-                    </li>                    
+                    </li>    
+                    <?php foreach( $personajes_id as $personaje ) { ?>                
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?sec=comics&serie=iron-man">Iron Man</a>
+                        <a class="nav-link" href="index.php?sec=comics&serie=<?= $personaje["personaje_principal_id"] ?>"><?= $personaje["personaje_principal_id"] ?></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php?sec=comics&serie=batman">Batman</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php?sec=comics&serie=wonder-woman">Wonder Woman</a>
-                    </li>
+                    <?php } ?>
                     <li class="nav-item">
                         <a class="nav-link" href="index.php?sec=envios">Envios</a>
                     </li>
