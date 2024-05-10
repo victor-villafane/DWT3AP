@@ -1,10 +1,6 @@
 <?php 
-    require_once "libraries/productos.php";
-    require_once "class/Comic.php";
-    include_once "class/Conexion.php";
-    include_once "class/Artista.php";
-    include_once "class/Guionista.php";
-    include_once "class/Serie.php";
+    require_once "functions/autoload.php";
+    // require_once "class/Serie.php";
     // echo "<pre>";
     // print_r($_GET["sec"]); //index.php
     // echo "</pre>";

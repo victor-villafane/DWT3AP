@@ -1,7 +1,6 @@
 <?php
-    include_once "libraries/funciones.php";
     $comics = ( new Comic() )->catalogo_completo();
-    //$comics = catalogo_completo();
+    //$comics = catalogo_completo()
 ?>
 
 
@@ -16,7 +15,7 @@
         <div class="card-body">
             <p class="fs-6 m-0 fw-bold text-danger"><?= $comic->getSerie() ?></p>
             <h5 class="card-title"><?= $comic->getTitulo() ?></h5>
-            <p class="card-text"><?= recortarDescripcion($comic->getBajada()) ?></p>
+            <p class="card-text"><?= $comic->getBajadaResumida() ?></p>
         </div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item">Guion: <?= $comic->getGuion() ?></li>

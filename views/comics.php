@@ -1,5 +1,5 @@
 <?php
-include_once 'libraries/funciones.php';
+//include_once 'libraries/funciones.php';
 $serieSeleccionada = $_GET['serie'];
 //$comics = $productos[$serieSeleccionada];
 $comics = (new Comic())->catalogo_x_personaje($serieSeleccionada);

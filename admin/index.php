@@ -1,10 +1,5 @@
 <?PHP
-require_once "../class/Conexion.php";
-require_once "../class/Comic.php";
-require_once "../class/Guionista.php";
-require_once "../class/Artista.php";
-require_once "../class/Serie.php";
-require_once "../class/Personaje.php";
+require_once "../functions/autoload.php";
 
 $secciones_validas = [
     "dashboard" => [
