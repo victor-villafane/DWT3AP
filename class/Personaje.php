@@ -42,7 +42,7 @@ class Personaje
     {
         try {
             $conexion = (new Conexion())->getConexion();
-            $query = "INSERT INTO personajes VALUES (null, '$nombre', '$alias', '$biografia', '$creador', '$primera_aparicion', '' )";
+            $query = "INSERT INTO personajes VALUES (null, '$nombre', '$alias', '$biografia', '$creador', '$primera_aparicion', '$imagen' )";
             $PDOStatement = $conexion->prepare($query);
             $PDOStatement->execute();
         } catch (Exception $e) {
