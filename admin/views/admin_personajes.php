@@ -29,7 +29,7 @@ $personajes = (new Personaje())->catalogo_completo();
                         <td><?= $personaje->getBiografia() ?></td>
                         <td>
                             <a href="" class="d-block btn btn-sm btn-warning mb-1">Editar</a>
-                            <a href="" class="d-block btn btn-sm btn-danger">Eliminar</a>
+                            <a href="actions/delete_personaje_acc.php?id=<?= $personaje->getId() ?>" class="d-block btn btn-sm btn-danger">Eliminar</a>
                         </td>
                     </tr>
                     <?php } ?>

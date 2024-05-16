@@ -50,6 +50,13 @@ class Personaje
         }
     }
 
+    public function delete(){
+        $conexion = (new Conexion())->getConexion();
+        $query = "DELETE FROM personajes WHERE id = $this->id";
+        $PDOStatement = $conexion->prepare($query);
+        $PDOStatement->execute();
+    }
+
     /**
      * Get the value of nombre
      */
