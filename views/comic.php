@@ -1,5 +1,4 @@
 <?php
-include_once 'libraries/funciones.php';
 $id = $_GET['id'];
 //$comics = $productos[$id];
 $comic = (new Comic())->catalogo_x_id($id);

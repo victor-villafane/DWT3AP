@@ -13,7 +13,13 @@ $secciones_validas = [
     ],
     "edit_personaje" => [
         "titulo" => "Administración de Personajes"
-    ]
+    ],
+    "delete_personaje" => [
+        "titulo" => "Eliminar Personaje"
+    ],
+    "edit_personaje" => [
+        "titulo" => "Editar Personaje"
+    ]    
 ];
 
 $seccion = $_GET['sec'] ?? "dashboard";

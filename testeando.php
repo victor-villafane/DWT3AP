@@ -5,13 +5,13 @@ include_once "class/Comic.php";
 include_once "class/Personaje.php";
 (new Personaje())->insert('asds', 'asds', 'asds', 'asds', 1991, 'asds');
 // try {
-//     $conexion = ( new Conexion() )->getConexion();
+    $conexion = ( new Conexion() )->getConexion();
 
-// $query = "INSERT INTO personajes VALUES (null,'asds', 'asds', 'asds', 'asds', 1991, 'asds')";
+$query = "UPDATE personajes SET nombre = 'test1' WHERE id = 1";
 
-// $PDOStatement = $conexion->prepare($query);
+$PDOStatement = $conexion->prepare($query);
 // // $PDOStatement->setFetchMode(PDO::FETCH_CLASS, Comic::class);
-// $PDOStatement->execute();
+$PDOStatement->execute();
 // } catch (Exception $e) {
 //     echo $e->getMessage();
 // }
