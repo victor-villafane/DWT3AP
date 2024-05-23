@@ -90,4 +90,49 @@ class Artista{
         return $resultado ? $resultado : null;
         
     }
+
+    public function catalogo_completo(): array
+    {
+        $catalogo = [];
+        $conexion = (new Conexion())->getConexion();
+        $query = "SELECT * FROM artistas";
+        $PDOStatement = $conexion->prepare($query);
+        $PDOStatement->setFetchMode(PDO::FETCH_CLASS, self::class);
+        $PDOStatement->execute();
+
+        $catalogo = $PDOStatement->fetchAll();
+
+        return $catalogo;
+    }
+    public function insert($nombre, $biografia, $imagen): void
+    {
+        try {
+            $conexion = (new Conexion())->getConexion();
+            $query = "INSERT INTO artistas VALUES (null, '$nombre', '$biografia', '$imagen' )";
+            $PDOStatement = $conexion->prepare($query);
+            $PDOStatement->execute();
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+    
+    public function delete(){
+        $conexion = (new Conexion())->getConexion();
+        $query = "DELETE FROM artistas WHERE id = $this->id";
+        $PDOStatement = $conexion->prepare($query);
+        $PDOStatement->execute();
+    }
+
+    public function edit($nombre, $biografia, $id){
+        $conexion = (new Conexion())->getConexion();
+        $query = "UPDATE artistas SET nombre_completo='$nombre', biografia='$biografia' WHERE id = $id";
+        $PDOStatement = $conexion->prepare($query);
+        $PDOStatement->execute();
+    }
+    public function reemplazarImagen($imagen, $id){
+        $conexion = (new Conexion())->getConexion();
+        $query = "UPDATE artistas SET foto_perfil='$imagen' WHERE id = $id";
+        $PDOStatement = $conexion->prepare($query);
+        $PDOStatement->execute();
+    }
 }

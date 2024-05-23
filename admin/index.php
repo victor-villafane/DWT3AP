@@ -19,7 +19,19 @@ $secciones_validas = [
     ],
     "edit_personaje" => [
         "titulo" => "Editar Personaje"
-    ]    
+    ],
+    "admin_artistas" => [
+        "titulo" => "Administracion de artistas"
+    ],
+    "add_artista" => [
+        "titulo" => "Agregar Artista"
+    ],
+    "delete_artista" => [
+        "titulo" => "Eliminar Artista"
+    ],   
+    "edit_artista" => [
+        "titulo" => "editar artista"
+    ]
 ];
 
 $seccion = $_GET['sec'] ?? "dashboard";
@@ -60,9 +72,11 @@ if (!array_key_exists($seccion, $secciones_validas)) {
                         <a class="nav-link active" href="index.php?sec=dashboard">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?sec=admin_personajes">Administración de Personajes</a>
+                        <a class="nav-link" href="index.php?sec=admin_personajes">Personajes</a>
                     </li>
-  
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php?sec=admin_artistas">Artistas</a>
+                    </li>  
                 </ul>
             </div>
         </div>
