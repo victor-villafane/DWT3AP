@@ -73,4 +73,17 @@
             return $resultado ? $resultado : null;
             
         }
+        public function catalogo_completo(): array
+        {
+            $catalogo = [];
+            $conexion = (new Conexion())->getConexion();
+            $query = "SELECT * FROM serie";
+            $PDOStatement = $conexion->prepare($query);
+            $PDOStatement->setFetchMode(PDO::FETCH_CLASS, self::class);
+            $PDOStatement->execute();
+    
+            $catalogo = $PDOStatement->fetchAll();
+    
+            return $catalogo;
+        }          
     }

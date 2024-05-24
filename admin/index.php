@@ -31,7 +31,13 @@ $secciones_validas = [
     ],   
     "edit_artista" => [
         "titulo" => "editar artista"
-    ]
+    ],
+    "admin_guionistas" => [
+        "titulo" => "Administracion de guionista"
+    ],
+    "admin_series" => [
+        "titulo" => "Administracion de serie"
+    ],    
 ];
 
 $seccion = $_GET['sec'] ?? "dashboard";
@@ -77,6 +83,12 @@ if (!array_key_exists($seccion, $secciones_validas)) {
                     <li class="nav-item">
                         <a class="nav-link" href="index.php?sec=admin_artistas">Artistas</a>
                     </li>  
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php?sec=admin_guionistas">Guionistas</a>
+                    </li>      
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php?sec=admin_series">Serie</a>
+                    </li>                                          
                 </ul>
             </div>
         </div>
