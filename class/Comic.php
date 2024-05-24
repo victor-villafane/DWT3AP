@@ -130,7 +130,8 @@ class Comic{
         return $this->id;
     }
     public function getPersonaje(){
-        return $this->personaje_principal_id;
+        $personaje = ( new Personaje() )->catalogo_x_id($this->personaje_principal_id);
+        return $personaje->getNombre();
     }
     //set -> sirver para cambiar el valor del atributo
 

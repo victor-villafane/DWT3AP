@@ -37,7 +37,13 @@ $secciones_validas = [
     ],
     "admin_series" => [
         "titulo" => "Administracion de serie"
-    ],    
+    ],   
+    "admin_comics" => [
+        "titulo" => "Administracion de comics"
+    ],   
+    "add_comic" => [
+        "titulo" => "Agregar comic"
+    ],             
 ];
 
 $seccion = $_GET['sec'] ?? "dashboard";
@@ -88,7 +94,10 @@ if (!array_key_exists($seccion, $secciones_validas)) {
                     </li>      
                     <li class="nav-item">
                         <a class="nav-link" href="index.php?sec=admin_series">Serie</a>
-                    </li>                                          
+                    </li>    
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php?sec=admin_comics">Comic</a>
+                    </li>                                                             
                 </ul>
             </div>
         </div>
