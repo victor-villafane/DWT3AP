@@ -108,9 +108,13 @@ class Artista{
     {
         try {
             $conexion = (new Conexion())->getConexion();
-            $query = "INSERT INTO artistas VALUES (null, '$nombre', '$biografia', '$imagen' )";
+            $query = "INSERT INTO artistas VALUES (null, :nombre, :biografia, :imagen )";
             $PDOStatement = $conexion->prepare($query);
-            $PDOStatement->execute();
+            $PDOStatement->execute([
+                "nombre" => htmlspecialchars($nombre),
+                "biografia" => htmlspecialchars($biografia),
+                "imagen" => htmlspecialchars($imagen)
+            ]);
         } catch (Exception $e) {
             echo $e->getMessage();
         }
@@ -118,21 +122,28 @@ class Artista{
     
     public function delete(){
         $conexion = (new Conexion())->getConexion();
-        $query = "DELETE FROM artistas WHERE id = $this->id";
+        $query = "DELETE FROM artistas WHERE id = :id";
         $PDOStatement = $conexion->prepare($query);
-        $PDOStatement->execute();
+        $PDOStatement->execute(["id" => htmlspecialchars($this->id)]);
     }
 
     public function edit($nombre, $biografia, $id){
         $conexion = (new Conexion())->getConexion();
-        $query = "UPDATE artistas SET nombre_completo='$nombre', biografia='$biografia' WHERE id = $id";
+        $query = "UPDATE artistas SET nombre_completo= :nombre, biografia= :biografia WHERE id = :id";
         $PDOStatement = $conexion->prepare($query);
-        $PDOStatement->execute();
+        $PDOStatement->execute([
+            "nombre" => htmlspecialchars($nombre),
+            "biografia" => htmlspecialchars($biografia),
+            "id" => htmlspecialchars($id)
+        ]);
     }
     public function reemplazarImagen($imagen, $id){
         $conexion = (new Conexion())->getConexion();
-        $query = "UPDATE artistas SET foto_perfil='$imagen' WHERE id = $id";
+        $query = "UPDATE artistas SET foto_perfil= :imagen WHERE id = :id";
         $PDOStatement = $conexion->prepare($query);
-        $PDOStatement->execute();
+        $PDOStatement->execute([
+            "imagen" => htmlspecialchars($imagen),
+            "id" => htmlspecialchars($id)
+        ]);
     }
 }
