@@ -43,7 +43,10 @@ $secciones_validas = [
     ],   
     "add_comic" => [
         "titulo" => "Agregar comic"
-    ],             
+    ],  
+    "edit_comic" => [
+        "titulo" => "Editar Comic"
+    ]           
 ];
 
 $seccion = $_GET['sec'] ?? "dashboard";

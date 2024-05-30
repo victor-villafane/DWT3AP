@@ -298,4 +298,20 @@ class Comic
 
         return $this;
     }
+
+    public function getSerie_id(){
+        return $this->serie_id;
+    }
+
+    public function getPersonaje_id(){
+        return $this->personaje_principal_id;
+    }
+
+    public function getGuionista_id(){
+        return $this->guionista_id;
+    }
+
+    public function getArtista_id(){
+        return $this->artista_id;
+    }
 }
