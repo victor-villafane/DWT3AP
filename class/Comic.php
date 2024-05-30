@@ -154,6 +154,36 @@ class Comic
             echo $e->getMessage();
         }
     }
+
+    public function reemplazarImagen($portada, $id){
+        $conexion = (new Conexion())->getConexion();
+        $query = "UPDATE comics SET portada=:portada WHERE id = :id";
+        $PDOStatement = $conexion->prepare($query);
+        $PDOStatement->execute([
+            "portada" => $portada,
+            "id" => $id
+        ]);
+    }
+    public function edit($personaje_principal_id, $serie_id, $volumen, $numero, $titulo, $publicacion, $guionista_id, $artista_id, $bajada, $origen, $editorial, $precio, $id){
+        $conexion = (new Conexion())->getConexion();
+        $query = "UPDATE `comics` SET `titulo` = :titulo, `personaje_principal_id` = :personaje_principal_id, `guionista_id` = :guionista_id, `artista_id` = :artista_id, `serie_id` = :serie_id, `volumen` = :volumen, `numero` = :numero, `publicacion` = :publicacion, `origen` = :origen, `editorial` = :editorial, `bajada` = :bajada,`precio` = :precio WHERE `comics`.`id` = :id";
+        $PDOStatement = $conexion->prepare($query);
+        $PDOStatement->execute([
+            'personaje_principal_id' => htmlspecialchars($personaje_principal_id),
+            'serie_id' => htmlspecialchars($serie_id),
+            'volumen' => htmlspecialchars($volumen),
+            'numero' => htmlspecialchars($numero),
+            'titulo' => htmlspecialchars($titulo),
+            'publicacion' => htmlspecialchars($publicacion),
+            'guionista_id' => htmlspecialchars($guionista_id),
+            'artista_id' => htmlspecialchars($artista_id),
+            'bajada' => htmlspecialchars($bajada),
+            'origen' => htmlspecialchars($origen),
+            'editorial' => htmlspecialchars($editorial),
+            'precio' => htmlspecialchars($precio),
+            "id" => htmlspecialchars($id)
+        ]);
+    }
     //get -> sirven para obtener el valor del atributo
     public function getId()
     {
