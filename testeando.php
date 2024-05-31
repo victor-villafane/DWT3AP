@@ -35,33 +35,7 @@ include_once "class/Personaje.php";
     <input type="submit" value="enviar">
 </form> -->
 <?php
-$host = 'web-callefalsa123.mysql.database.azure.com'; // Cambia 'your_server' por el nombre de tu servidor
-$db = 'tiendita'; // Cambia 'your_database' por el nombre de tu base de datos
-$user = 'callefalsa123@web-callefalsa123'; // Cambia 'your_username' por tu nombre de usuario, asegúrate de incluir '@your_server'
-$pass = 'Homero135'; // Cambia 'your_password' por tu contraseña
-
-// Crear conexión
-$conn = new mysqli($host, $user, $pass, $db);
-
-// Verificar conexión
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-echo "Connected successfully!";
-
-// Realizar una consulta
-$sql = "SELECT * FROM comics LIMIT 10"; // Cambia 'your_table' por el nombre de tu tabla
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    // Salida de datos de cada fila
-    while($row = $result->fetch_assoc()) {
-        echo "id: " . $row["id"]. " - Name: " . $row["name"]. " - Author: " . $row["author"]. "<br>";
-    }
-} else {
-    echo "0 results";
-}
-
-// Cerrar conexión
-$conn->close();
+$conn = mysqli_init();
+mysqli_ssl_set($conn,NULL,NULL, "C:\xampp\htdocs\www\DWT3AP\DigiCertGlobalRootG2.crt.pem", NULL, NULL);
+mysqli_real_connect($conn, "web-callefalsa123.mysql.database.azure.com", "callefalsa123", "Homero135", "tiendita", 3306, MYSQLI_CLIENT_SSL);
 ?>

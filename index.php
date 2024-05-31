@@ -27,6 +27,9 @@
         ],
         "todosLosComics" => [
             "titulo" => "Todos los comics"
+        ],
+        "login" => [
+            "titulo" => "Ingresar!"
         ]
     ];
 
