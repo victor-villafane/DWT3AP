@@ -26,11 +26,42 @@ include_once "class/Personaje.php";
 // print_r($_POST);
 ?>
 
-<form action="testeando.php" method="post">
+<!-- <form action="testeando.php" method="post">
     <input type="text" name="nombre">
     <?= isset($_POST["nombre"]) 
         ? htmlspecialchars($_POST["nombre"]) 
         : "No hay nada" 
     ?>
     <input type="submit" value="enviar">
-</form>
+</form> -->
+<?php
+$host = 'web-callefalsa123.mysql.database.azure.com'; // Cambia 'your_server' por el nombre de tu servidor
+$db = 'tiendita'; // Cambia 'your_database' por el nombre de tu base de datos
+$user = 'callefalsa123@web-callefalsa123'; // Cambia 'your_username' por tu nombre de usuario, asegúrate de incluir '@your_server'
+$pass = 'Homero135'; // Cambia 'your_password' por tu contraseña
+
+// Crear conexión
+$conn = new mysqli($host, $user, $pass, $db);
+
+// Verificar conexión
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+echo "Connected successfully!";
+
+// Realizar una consulta
+$sql = "SELECT * FROM comics LIMIT 10"; // Cambia 'your_table' por el nombre de tu tabla
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // Salida de datos de cada fila
+    while($row = $result->fetch_assoc()) {
+        echo "id: " . $row["id"]. " - Name: " . $row["name"]. " - Author: " . $row["author"]. "<br>";
+    }
+} else {
+    echo "0 results";
+}
+
+// Cerrar conexión
+$conn->close();
+?>

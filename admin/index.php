@@ -46,6 +46,9 @@ $secciones_validas = [
     ],  
     "edit_comic" => [
         "titulo" => "Editar Comic"
+    ],
+    "delete_comic" => [
+        "titulo" => "Eliminar Comic"
     ]           
 ];
 

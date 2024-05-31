@@ -184,6 +184,16 @@ class Comic
             "id" => htmlspecialchars($id)
         ]);
     }
+
+    public function delete(){
+        $conexion = (new Conexion())->getConexion();
+        $query = "DELETE FROM comics WHERE id = :id";
+        $PDOStatement = $conexion->prepare($query);
+        $PDOStatement->execute([
+            "id" => htmlspecialchars($this->id)
+        ]);
+    }
+
     //get -> sirven para obtener el valor del atributo
     public function getId()
     {
