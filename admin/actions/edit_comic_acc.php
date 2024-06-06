@@ -5,7 +5,7 @@ print_r($_POST);
 echo "</pre>";
 require_once "../../functions/autoload.php";
 $fileData = $_FILES["portada"] ?? FALSE;
-
+$personajes_secundarios = $_POST["personajes_secundarios"];
 try {
     $comic = new Comic();
 
@@ -31,6 +31,10 @@ try {
         $_POST["precio"],
         $_POST["id"]
     );
+    (new Comic())->clear_personajes_secundarios($_POST["id"]);
+    foreach ($personajes_secundarios as $id_personaje_secundario) {
+        (new Comic())->add_personaje_secundario($_POST["id"], $id_personaje_secundario);
+    }
     header("Location: ../index.php?sec=admin_comics");
 } catch (Exception $e) {
     echo $e->getMessage();

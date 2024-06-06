@@ -84,6 +84,22 @@ $guionistas = (new Guionista())->catalogo_completo();
                     <label class="form-label" for="">Precio</label>
                     <input class="form-control" type="number" name="precio">
                 </div>
+
+                <div class="col-md-12 mb-3">
+                    <label class="form-label" for="">Personajes Secundarios</label>
+                    <?php foreach ($personajes as $personaje) { ?>
+                    <div>
+                        <input type="checkbox" name="personajes_secundarios[]"
+                            id="personaje_secundario<?= $personaje->getId() ?>"
+                            value="<?= $personaje->getId() ?>"
+                            >
+                        <label for="personaje_secundario<?= $personaje->getId() ?>">
+                            <?= $personaje->getNombre() ?>
+                        </label>
+                    </div>
+                    <?php } ?>
+                </div>
+
                 <div class="col-md-12 mb-3">
                     <label class="form-label" for="">Bajada</label>
                     <textarea class="form-control" name="bajada" id="bajada" rows="7"></textarea>

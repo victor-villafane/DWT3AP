@@ -92,6 +92,25 @@ $comic = (new Comic())->catalogo_x_id($_GET["id"]);
                     <label class="form-label" for="">Precio</label>
                     <input class="form-control" type="number" name="precio" value="<?= $comic->getPrecio() ?>">
                 </div>
+
+                <div class="col-md-12 mb-3">
+                    <label class="form-label" for="">Personajes Secundarios</label>
+                    <?php foreach ($personajes as $personaje) { 
+                        $ps_seleccionado = explode(",",$comic->getPersonajesSecundarios());    
+                    ?>
+                    <div>
+                        <input type="checkbox" name="personajes_secundarios[]"
+                            id="personaje_secundario<?= $personaje->getId() ?>"
+                            <?= in_array( $personaje->getId(), $ps_seleccionado) ? "checked" : ""  ?>
+                            value="<?= $personaje->getId() ?>"
+                            >
+                        <label for="personaje_secundario<?= $personaje->getId() ?>">
+                            <?= $personaje->getNombre() ?>
+                        </label>
+                    </div>
+                    <?php } ?>
+                </div>
+
                 <div class="col-md-12 mb-3">
                     <label class="form-label" for="">Bajada</label>
                     <textarea class="form-control" name="bajada" id="bajada" rows="7"><?=$comic->getBajada()?></textarea>
