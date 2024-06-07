@@ -98,12 +98,18 @@ class Usuario{
 		return $this;
 	}
 
+	public function getId(){
+		return $this->id;
+	}
+
 	public function usuario_x_email(string $email){
 		$conexion = (new Conexion())->getConexion();
-		$query = "SELECT * FROM usuarios WHERE email = $email";
+		$query = "SELECT * FROM usuarios WHERE email = :email";
 		$PDOStatement = $conexion->prepare($query);
 		$PDOStatement->setFetchMode(PDO::FETCH_CLASS,self::class);
-		$PDOStatement->execute();
+		$PDOStatement->execute([
+			"email" => $email
+		]);
 		$result = $PDOStatement->fetch();
 		return $result;
 	}

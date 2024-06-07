@@ -31,9 +31,15 @@
                     <li class="nav-item">
                         <a class="nav-link" href="index.php?sec=envios">Envios</a>
                     </li>
+                    <?php if( isset($_SESSION["login"]) ){ ?>       
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin/actions/auth_logout.php">Salir</a>
+                    </li>    
+                    <?php }else{ ?>
                     <li class="nav-item">
                         <a class="nav-link" href="index.php?sec=login">Login</a>
-                    </li>                    
+                    </li>   
+                    <?php } ?>                              
                 </ul>
             </div>
         </div>

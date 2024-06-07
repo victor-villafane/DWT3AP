@@ -40,7 +40,6 @@
         $vista = "404";
         $titulo = $seccionesValidas["404"]["titulo"];
     }
-
 ?>
 
 <!DOCTYPE html>
