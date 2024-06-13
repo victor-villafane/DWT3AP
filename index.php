@@ -30,6 +30,9 @@
         ],
         "login" => [
             "titulo" => "Ingresar!"
+        ],
+        "registro" => [
+            "titulo" => "Registro"
         ]
     ];
 
@@ -59,7 +62,7 @@
 
 <body>
     <?php include_once "includes/nav.php" ?>
-
+    
     <main class="container">
         <?php file_exists("views/$vista.php") 
                 ? include "views/$vista.php" 
@@ -67,6 +70,7 @@
     </main>
 
     <?php include_once "includes/footer.php" ?>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
 </html>

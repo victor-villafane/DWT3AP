@@ -35,9 +35,11 @@ try {
     foreach ($personajes_secundarios as $id_personaje_secundario) {
         (new Comic())->add_personaje_secundario($_POST["id"], $id_personaje_secundario);
     }
+    (new Alerta())->add_alerta("Se pudo editar", "success");
     header("Location: ../index.php?sec=admin_comics");
 } catch (Exception $e) {
     echo $e->getMessage();
+    (new Alerta())->add_alerta("Se no pudo editar", "danger");
     die("No pude editar el personaje");
 }
 

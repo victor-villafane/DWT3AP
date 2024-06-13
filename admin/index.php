@@ -120,10 +120,11 @@ if (!array_key_exists($seccion, $secciones_validas)) {
         </div>
     </nav>
     <main class="container">
-
+    <?= (new Alerta())->get_alertas() ?>
         <?php require file_exists("views/$vista.php") ? "views/$vista.php" : 'views/404.php'; ?>
 
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
 </html>

@@ -113,4 +113,11 @@ class Usuario{
 		$result = $PDOStatement->fetch();
 		return $result;
 	}
+
+	public function insert(string $email, string $password){
+		$conexion = (new Conexion())->getConexion();
+		$query = "INSERT INTO usuarios VALUES (NULL, '$email', '', '', '$password', 'usuario')";
+		$PDOStatement = $conexion->prepare($query);
+		$PDOStatement->execute();
+	}
 }
