@@ -15,7 +15,7 @@ class Personaje
     public function catalogo_completo(): array
     {
         $catalogo = [];
-        $conexion = (new Conexion())->getConexion();
+        $conexion = Conexion::getConexion();
         $query = "SELECT * FROM personajes";
         $PDOStatement = $conexion->prepare($query);
         $PDOStatement->setFetchMode(PDO::FETCH_CLASS, self::class);
@@ -41,7 +41,7 @@ class Personaje
     public function insert($nombre, $alias, $biografia, $creador, $primera_aparicion, $imagen): void
     {
         try {
-            $conexion = (new Conexion())->getConexion();
+            $conexion = Conexion::getConexion();
             $query = "INSERT INTO personajes VALUES (null, :nombre, :alias, :biografia, :creador, :primera_aparicion, :imagen )";
             $PDOStatement = $conexion->prepare($query);
             $PDOStatement->execute([
@@ -58,7 +58,7 @@ class Personaje
     }
 
     public function delete(){
-        $conexion = (new Conexion())->getConexion();
+        $conexion = Conexion::getConexion();
         $query = "DELETE FROM personajes WHERE id = :id";
         $PDOStatement = $conexion->prepare($query);
         $PDOStatement->execute([
@@ -67,7 +67,7 @@ class Personaje
     }
 
     public function edit($nombre, $alias, $biografia, $creador, $primera_aparicion, $id){
-        $conexion = (new Conexion())->getConexion();
+        $conexion = Conexion::getConexion();
         $query = "UPDATE personajes SET nombre=:nombre, alias=:alias, biografia=:biografia, creador=:creador, primera_aparicion=:primera_aparicion WHERE id = :id";
         $PDOStatement = $conexion->prepare($query);
         $PDOStatement->execute([
@@ -81,7 +81,7 @@ class Personaje
     }
 
     public function reemplazarImagen($imagen, $id){
-        $conexion = (new Conexion())->getConexion();
+        $conexion = Conexion::getConexion();
         $query = "UPDATE personajes SET imagen=:imagen WHERE id = :id";
         $PDOStatement = $conexion->prepare($query);
         $PDOStatement->execute([

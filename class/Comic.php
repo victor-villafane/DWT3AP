@@ -52,7 +52,7 @@ class Comic
     public function catalogo_completo()
     {
         $catalogo = [];
-        $conexion = (new Conexion())->getConexion();
+        $conexion = Conexion::getConexion();
         $query = 'SELECT comics.*, GROUP_CONCAT(comic_x_personaje.id_personaje) AS personajes_secundarios FROM comics 
         LEFT JOIN comic_x_personaje ON comics.id = comic_x_personaje.id_comic 
         GROUP BY comics.id';
@@ -88,7 +88,7 @@ class Comic
         // $comics = $this->catalogo_completo();
         $personajes = [];
 
-        $conexion = (new Conexion())->getConexion();
+        $conexion = Conexion::getConexion();
         $query = "SELECT comics.*, GROUP_CONCAT(comic_x_personaje.id_personaje) AS personajes_secundarios FROM comics 
         LEFT JOIN comic_x_personaje ON comics.id = comic_x_personaje.id_comic 
         WHERE personaje_principal_id = $personaje_id GROUP BY comics.id ";
@@ -106,7 +106,7 @@ class Comic
     {
         $personajes = [];
 
-        $conexion = (new Conexion())->getConexion();
+        $conexion = Conexion::getConexion();
         $query = 'SELECT personaje_principal_id FROM `comics` GROUP BY personaje_principal_id';
         $PDOStatement = $conexion->prepare($query);
         $PDOStatement->execute();
@@ -152,7 +152,7 @@ class Comic
     public function insert($personaje_principal_id, $serie_id, $volumen, $numero, $titulo, $publicacion, $guionista_id, $artista_id, $bajada, $origen, $editorial, $portada, $precio): int
     {
         try {
-            $conexion = (new Conexion())->getConexion();
+            $conexion = Conexion::getConexion();
             $query = "INSERT INTO `comics` (`id`, `titulo`, `personaje_principal_id`, `guionista_id`, `artista_id`, `serie_id`, `volumen`, `numero`, `publicacion`, `origen`, `editorial`, `bajada`, `portada`, `precio`) VALUES (NULL, :titulo, :personaje_principal_id, :guionista_id, :artista_id, :serie_id, :volumen, :numero, :publicacion, :origen, :editorial, :bajada, :portada, :precio)";
             $PDOStatement = $conexion->prepare($query);
             $PDOStatement->execute([
@@ -177,7 +177,7 @@ class Comic
     }
 
     public function reemplazarImagen($portada, $id){
-        $conexion = (new Conexion())->getConexion();
+        $conexion = Conexion::getConexion();
         $query = "UPDATE comics SET portada=:portada WHERE id = :id";
         $PDOStatement = $conexion->prepare($query);
         $PDOStatement->execute([
@@ -186,7 +186,7 @@ class Comic
         ]);
     }
     public function edit($personaje_principal_id, $serie_id, $volumen, $numero, $titulo, $publicacion, $guionista_id, $artista_id, $bajada, $origen, $editorial, $precio, $id){
-        $conexion = (new Conexion())->getConexion();
+        $conexion = Conexion::getConexion();
         $query = "UPDATE `comics` SET `titulo` = :titulo, `personaje_principal_id` = :personaje_principal_id, `guionista_id` = :guionista_id, `artista_id` = :artista_id, `serie_id` = :serie_id, `volumen` = :volumen, `numero` = :numero, `publicacion` = :publicacion, `origen` = :origen, `editorial` = :editorial, `bajada` = :bajada,`precio` = :precio WHERE `comics`.`id` = :id";
         $PDOStatement = $conexion->prepare($query);
         $PDOStatement->execute([
@@ -207,7 +207,7 @@ class Comic
     }
 
     public function delete(){
-        $conexion = (new Conexion())->getConexion();
+        $conexion = Conexion::getConexion();
         $query = "DELETE FROM comics WHERE id = :id";
         $PDOStatement = $conexion->prepare($query);
         $PDOStatement->execute([
@@ -216,7 +216,7 @@ class Comic
     }
 
     public function add_personaje_secundario($id_comic, $id_personaje){
-        $conexion = (new Conexion())->getConexion();
+        $conexion = Conexion::getConexion();
         $query = "INSERT INTO `comic_x_personaje` (`id`, `id_comic`, `id_personaje`) VALUES (NULL, :id_comic, :id_personaje)";
         $PDOStatement = $conexion->prepare($query);
         $PDOStatement->execute([
@@ -225,7 +225,7 @@ class Comic
         ]);
     }
     public function clear_personajes_secundarios($id){
-        $conexion = (new Conexion())->getConexion();
+        $conexion = Conexion::getConexion();
         $query = "DELETE FROM comic_x_personaje WHERE id_comic = :id";
         $PDOStatement = $conexion->prepare($query);
         $PDOStatement->execute([

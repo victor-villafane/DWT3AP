@@ -103,7 +103,7 @@ class Usuario{
 	}
 
 	public function usuario_x_email(string $email){
-		$conexion = (new Conexion())->getConexion();
+		$conexion = Conexion::getConexion();
 		$query = "SELECT * FROM usuarios WHERE email = :email";
 		$PDOStatement = $conexion->prepare($query);
 		$PDOStatement->setFetchMode(PDO::FETCH_CLASS,self::class);
@@ -115,7 +115,7 @@ class Usuario{
 	}
 
 	public function insert(string $email, string $password){
-		$conexion = (new Conexion())->getConexion();
+		$conexion = Conexion::getConexion();
 		$query = "INSERT INTO usuarios VALUES (NULL, '$email', '', '', '$password', 'usuario')";
 		$PDOStatement = $conexion->prepare($query);
 		$PDOStatement->execute();

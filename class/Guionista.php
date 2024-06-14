@@ -80,7 +80,7 @@ class Guionista{
 
     public function get_x_id(int $id) :? self
     {
-        $conexion = (new Conexion())->getConexion();
+        $conexion = Conexion::getConexion();
         $query = "SELECT * FROM guionistas WHERE id = $id";
         $PDOStatement = $conexion->prepare($query);
         $PDOStatement->setFetchMode(PDO::FETCH_CLASS, self::class);
@@ -94,7 +94,7 @@ class Guionista{
     public function catalogo_completo(): array
     {
         $catalogo = [];
-        $conexion = (new Conexion())->getConexion();
+        $conexion = Conexion::getConexion();
         $query = "SELECT * FROM guionistas";
         $PDOStatement = $conexion->prepare($query);
         $PDOStatement->setFetchMode(PDO::FETCH_CLASS, self::class);

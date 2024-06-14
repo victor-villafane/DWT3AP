@@ -80,7 +80,7 @@ class Artista{
 
     public function get_x_id(int $id) :? Artista
     {
-        $conexion = (new Conexion())->getConexion();
+        $conexion = Conexion::getConexion();
         $query = "SELECT * FROM artistas WHERE id = $id";
         $PDOStatement = $conexion->prepare($query);
         $PDOStatement->setFetchMode(PDO::FETCH_CLASS, self::class);
@@ -94,7 +94,7 @@ class Artista{
     public function catalogo_completo(): array
     {
         $catalogo = [];
-        $conexion = (new Conexion())->getConexion();
+        $conexion = Conexion::getConexion();
         $query = "SELECT * FROM artistas";
         $PDOStatement = $conexion->prepare($query);
         $PDOStatement->setFetchMode(PDO::FETCH_CLASS, self::class);
@@ -107,7 +107,7 @@ class Artista{
     public function insert($nombre, $biografia, $imagen): void
     {
         try {
-            $conexion = (new Conexion())->getConexion();
+            $conexion = Conexion::getConexion();
             $query = "INSERT INTO artistas VALUES (null, :nombre, :biografia, :imagen )";
             $PDOStatement = $conexion->prepare($query);
             $PDOStatement->execute([
@@ -121,14 +121,14 @@ class Artista{
     }
     
     public function delete(){
-        $conexion = (new Conexion())->getConexion();
+        $conexion = Conexion::getConexion();
         $query = "DELETE FROM artistas WHERE id = :id";
         $PDOStatement = $conexion->prepare($query);
         $PDOStatement->execute(["id" => htmlspecialchars($this->id)]);
     }
 
     public function edit($nombre, $biografia, $id){
-        $conexion = (new Conexion())->getConexion();
+        $conexion = Conexion::getConexion();
         $query = "UPDATE artistas SET nombre_completo= :nombre, biografia= :biografia WHERE id = :id";
         $PDOStatement = $conexion->prepare($query);
         $PDOStatement->execute([
@@ -138,7 +138,7 @@ class Artista{
         ]);
     }
     public function reemplazarImagen($imagen, $id){
-        $conexion = (new Conexion())->getConexion();
+        $conexion = Conexion::getConexion();
         $query = "UPDATE artistas SET foto_perfil= :imagen WHERE id = :id";
         $PDOStatement = $conexion->prepare($query);
         $PDOStatement->execute([

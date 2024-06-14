@@ -7,11 +7,12 @@ class Conexion{
     protected const DB_NAME = "tiendita";
     protected const DB_DSN = 'mysql:host=' . self::DB_SERVER . ';dbname=' . self::DB_NAME . ';charset=utf8mb4';
 
-    protected PDO $db;
+    protected static ?PDO $db = null;
     private static $conexiones = 0;
-    public function __construct(){
+
+    protected static function conectar(){
         try {
-            $this->db = new PDO(
+            self::$db = new PDO(
                 self::DB_DSN, 
                 self::DB_USER, 
                 self::DB_PASS,
@@ -23,7 +24,10 @@ class Conexion{
         }        
     }
 
-    public function getConexion(){
-        return $this->db;
+    public static function getConexion(){
+        if( self::$db === null ){
+            self::conectar();
+        }
+        return self::$db;
     }
 }

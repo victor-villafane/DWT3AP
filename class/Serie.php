@@ -63,7 +63,7 @@
 
         public function get_x_id(int $id) :? self
         {
-            $conexion = (new Conexion())->getConexion();
+            $conexion = Conexion::getConexion();
             $query = "SELECT * FROM serie WHERE id = $id";
             $PDOStatement = $conexion->prepare($query);
             $PDOStatement->setFetchMode(PDO::FETCH_CLASS, self::class);
@@ -76,7 +76,7 @@
         public function catalogo_completo(): array
         {
             $catalogo = [];
-            $conexion = (new Conexion())->getConexion();
+            $conexion = Conexion::getConexion();
             $query = "SELECT * FROM serie";
             $PDOStatement = $conexion->prepare($query);
             $PDOStatement->setFetchMode(PDO::FETCH_CLASS, self::class);
