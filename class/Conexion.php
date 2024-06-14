@@ -18,7 +18,6 @@ class Conexion{
                 self::DB_PASS,
                 array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
             );
-            echo "CREE UNA NUEVA CONEXION!!!!!". self::$conexiones++ ."<br>";
         } catch (Exception $e) {
             die('Error al conectar con MySQL.');
         }        
