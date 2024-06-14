@@ -26,7 +26,7 @@ class Personaje
         return $catalogo;
     }
 
-    public function catalogo_x_id($id)
+    public function catalogo_x_id(int $id)
     {
         $personajes = $this->catalogo_completo();
 

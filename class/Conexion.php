@@ -8,7 +8,7 @@ class Conexion{
     protected const DB_DSN = 'mysql:host=' . self::DB_SERVER . ';dbname=' . self::DB_NAME . ';charset=utf8mb4';
 
     protected PDO $db;
-
+    private static $conexiones = 0;
     public function __construct(){
         try {
             $this->db = new PDO(
@@ -17,7 +17,7 @@ class Conexion{
                 self::DB_PASS,
                 array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
             );
-            echo "CREE UNA NUEVA CONEXION!!!!!<br>";
+            echo "CREE UNA NUEVA CONEXION!!!!!". self::$conexiones++ ."<br>";
         } catch (Exception $e) {
             die('Error al conectar con MySQL.');
         }        
