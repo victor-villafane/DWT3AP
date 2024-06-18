@@ -1,11 +1,6 @@
 <?php
 $id = $_GET['id'];
-//$comics = $productos[$id];
 $comic = (new Comic())->catalogo_x_id($id);
-//index.php?sec=comics&serie=batman
-// echo "<pre>";
-// print_r($comics[1]["portada"]);
-// echo "</pre>"
 ?>
 
 <div class="row" >
@@ -32,7 +27,12 @@ $comic = (new Comic())->catalogo_x_id($id);
 
                         <div class="card-body flex-grow-0 mt-auto">
                             <div class="fs-3 mb-3 fw-bold text-center text-danger">$<?= $comic->getPrecio() ?></div>
-                            <a href="#" class="btn btn-danger w-100 fw-bold">COMPRAR</a>
+                            <form action="admin/actions/add_item_acc.php" method="get">
+                                <label for="">Cantidad:</label>
+                                <input type="number" name="c" id="c" value="1">
+                                <input type="submit" value="Comprar">
+                                <input type="hidden" name="id" value="<?= $comic->getId() ?>">
+                            </form>
                         </div>
                     </div>
                 </div>

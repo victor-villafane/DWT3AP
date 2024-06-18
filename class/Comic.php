@@ -63,11 +63,6 @@ class Comic
             $catalogo[] = $this->mapear($comic);
         }
 
-        echo "<pre>";
-        print_r($catalogo);
-        echo "</pre>";
-
-
         return $catalogo;
     }
     public function catalogo_x_id($id)

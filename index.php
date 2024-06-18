@@ -33,7 +33,10 @@
         ],
         "registro" => [
             "titulo" => "Registro"
-        ]
+        ],
+        "carrito" => [
+            "titulo" => "Carrito"
+        ],
     ];
 
     if( array_key_exists($view, $seccionesValidas) ){
