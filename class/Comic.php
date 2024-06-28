@@ -62,7 +62,7 @@ class Comic
         while ($comic = $PDOStatement->fetch()) {
             $catalogo[] = $this->mapear($comic);
         }
-
+        
         return $catalogo;
     }
     public function catalogo_x_id($id)

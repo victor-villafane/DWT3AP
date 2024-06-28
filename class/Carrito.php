@@ -59,4 +59,40 @@ class Carrito{
         }
     }
     /**Finalizar compra*/
+
+    public function finalizarCompra(){
+        if( isset( $_SESSION["carrito"] ) && isset($_SESSION["login"]) ){
+            foreach( $_SESSION["carrito"] as $id_producto => $producto ){
+                $this->insert($id_producto, $_SESSION["login"]["id"], $producto["cantidad"]);
+            }
+        }
+    } 
+
+    public function insert(int $id_producto, int $id_usuario, int $cantidad){
+        try {
+            $conexion = Conexion::getConexion();
+            $query = "INSERT INTO `carrito` (`id`, `id_comic`, `id_usuario`, `cantidad`) VALUES (NULL, :id_producto, :id_usuario, :cantidad)";
+            $PDOStatement = $conexion->prepare($query);
+            $PDOStatement->execute([
+                "id_producto" => htmlspecialchars($id_producto),
+                "id_usuario" => htmlspecialchars($id_usuario),
+                "cantidad" => htmlspecialchars($cantidad),
+            ]);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function borrarCarritosAnteriores(){
+        try {
+            $conexion = Conexion::getConexion();
+            $query = "DELETE FROM `carrito` WHERE id_usuario = :id_usuario";
+            $PDOStatement = $conexion->prepare($query);
+            $PDOStatement->execute([
+                "id_usuario" => htmlspecialchars($_SESSION["login"]["id"])
+            ]);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
 }
